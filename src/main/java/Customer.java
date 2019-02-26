@@ -17,26 +17,7 @@ class Customer {
         return _name;
     }
 
-    private double determineIndividualRentalAmount(Rental rental) {
-        // determine amount for a single rental
-        double amount = 0;
-        switch (rental.getMovie().getPriceCode()) {
-            case Movie.REGULAR:
-                amount += 2;
-                if (rental.getDaysRented() > 2)
-                    amount += (rental.getDaysRented() - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                amount += rental.getDaysRented() * 3;
-                break;
-            case Movie.CHILDRENS:
-                amount += 1.5;
-                if (rental.getDaysRented() > 3)
-                    amount += (rental.getDaysRented() - 3) * 1.5;
-                break;
-        }
-        return amount;
-    }
+
 
     public String statement() {
         double totalAmount = 0;
@@ -45,7 +26,7 @@ class Customer {
         StringBuilder result = new StringBuilder("Rental Record for " + getName() + "\n");
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
-            double thisAmount = determineIndividualRentalAmount(each);
+            double thisAmount = each.getCost();
             // add frequent renter points
             frequentRenterPoints++;
             // add bonus for a two day new release rental
