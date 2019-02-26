@@ -6,11 +6,11 @@ Refactoring practice, following along with:
 @book{
   author    = {Martin Fowler},
   title     = {Refactoring: Improving the Design of Existing Code},
-  edition   = 2,
+  edition   = 1,
   chapter   = 1,
   publisher = {Addison-Wesley Professional},
-  year      = {2018},
-  isbn      = {0134757599},
+  year      = {1999},
+  isbn      = {9780201485677},
   url       = {https://files.thoughtworks.com/pdfs/Refactoring2-free-chapter.pdf}
 }
 ```
