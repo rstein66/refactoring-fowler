@@ -1,4 +1,4 @@
-# refactoring-fowler
+# video-store-refactor
 
 Refactoring practice, following along with:
 
