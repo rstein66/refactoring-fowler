@@ -21,10 +21,11 @@ class CustomerTest {
         Rental aRental = createRental(customer, "Die Hard", Movie.REGULAR, TWO_DAYS);
         customer.addRental(aRental);
         String statementResult = customer.statement();
-        String expectedStatement = "Rental Record for John Smith\n" +
-                "\tDie Hard\t2.0\n" +
-                "Amount owed is 2.0\n" +
-                "You earned 1 frequent renter points";
+        String expectedStatement =
+                "<h1>Rental Record for <em>John Smith</em></h1>\n<table>\n" +
+                "<tr><td>Die Hard</td><td>2.0</td></tr>\n" +
+                "</table>\n<p>Amount owed is <b>2.0</b>.</p>\n" +
+                "<p>You earned <b>1</b> frequent renter points.</p>";
         MatcherAssert.assertThat(statementResult, is(expectedStatement));
     }
 
@@ -34,10 +35,11 @@ class CustomerTest {
         aRental = createRental(customer, "Die Hard", Movie.REGULAR, THREE_DAYS);
         customer.addRental(aRental);
         String statementResult = customer.statement();
-        String expectedStatement = "Rental Record for John Smith\n" +
-                "\tDie Hard\t3.5\n" +
-                "Amount owed is 3.5\n" +
-                "You earned 1 frequent renter points";
+        String expectedStatement =
+                "<h1>Rental Record for <em>John Smith</em></h1>\n<table>\n" +
+                "<tr><td>Die Hard</td><td>3.5</td></tr>\n" +
+                "</table>\n<p>Amount owed is <b>3.5</b>.</p>\n" +
+                "<p>You earned <b>1</b> frequent renter points.</p>";
         MatcherAssert.assertThat(statementResult, is(expectedStatement));
     }
 
@@ -48,10 +50,11 @@ class CustomerTest {
         Rental aRental = createRental(customer, "Kung Fu Panda", Movie.CHILDRENS, TWO_DAYS);
         customer.addRental(aRental);
         String statementResult = customer.statement();
-        String expectedStatement = "Rental Record for John Smith\n" +
-                "\tKung Fu Panda\t1.5\n" +
-                "Amount owed is 1.5\n" +
-                "You earned 1 frequent renter points";
+        String expectedStatement =
+                "<h1>Rental Record for <em>John Smith</em></h1>\n<table>\n" +
+                "<tr><td>Kung Fu Panda</td><td>1.5</td></tr>\n" +
+                "</table>\n<p>Amount owed is <b>1.5</b>.</p>\n" +
+                "<p>You earned <b>1</b> frequent renter points.</p>";
         MatcherAssert.assertThat(statementResult, is(expectedStatement));
     }
 
@@ -61,10 +64,11 @@ class CustomerTest {
         Rental aRental = createRental(customer, "Kung Fu Panda", Movie.CHILDRENS, FOUR_DAYS);
         customer.addRental(aRental);
         String statementResult = customer.statement();
-        String expectedStatement = "Rental Record for John Smith\n" +
-                "\tKung Fu Panda\t3.0\n" +
-                "Amount owed is 3.0\n" +
-                "You earned 1 frequent renter points";
+        String expectedStatement =
+                "<h1>Rental Record for <em>John Smith</em></h1>\n<table>\n" +
+                "<tr><td>Kung Fu Panda</td><td>3.0</td></tr>\n" +
+                "</table>\n<p>Amount owed is <b>3.0</b>.</p>\n" +
+                "<p>You earned <b>1</b> frequent renter points.</p>";
         MatcherAssert.assertThat(statementResult, is(expectedStatement));
     }
 
@@ -73,10 +77,11 @@ class CustomerTest {
         Rental aRental = createRental(customer, "The Incident", Movie.NEW_RELEASE, TWO_DAYS);
         customer.addRental(aRental);
         String statementResult = customer.statement();
-        String expectedStatement = "Rental Record for John Smith\n" +
-                "\tThe Incident\t6.0\n" +
-                "Amount owed is 6.0\n" +
-                "You earned 2 frequent renter points";
+        String expectedStatement =
+                "<h1>Rental Record for <em>John Smith</em></h1>\n<table>\n" +
+                "<tr><td>The Incident</td><td>6.0</td></tr>\n" +
+                "</table>\n<p>Amount owed is <b>6.0</b>.</p>\n" +
+                "<p>You earned <b>2</b> frequent renter points.</p>";
         MatcherAssert.assertThat(statementResult, is(expectedStatement));
     }
 
@@ -84,8 +89,11 @@ class CustomerTest {
     void testStatementNoRentals() {
         Customer customer = new Customer(TEST_CUSTOMER);
         String statementResult = customer.statement();
-        MatcherAssert.assertThat(statementResult,
-                                 is("Rental Record for John Smith\nAmount owed is 0.0\nYou earned 0 frequent renter points"));
+        String expectedStatement =
+                "<h1>Rental Record for <em>John Smith</em></h1>\n<table>\n" +
+                "</table>\n<p>Amount owed is <b>0.0</b>.</p>\n" +
+                "<p>You earned <b>0</b> frequent renter points.</p>";
+        MatcherAssert.assertThat(statementResult, is(expectedStatement));
     }
 
     @Test
@@ -101,13 +109,15 @@ class CustomerTest {
         aRental = createRental(customer, "Star Wars", Movie.REGULAR, ONE_DAY);
         customer.addRental(aRental);
         String statementResult = customer.statement();
-        String expectedStatement = "Rental Record for John Smith\n" +
-                "\tDie Hard\t2.0\n" +
-                "\tThe Incident\t6.0\n" +
-                "\tKung Fu Panda\t1.5\n" +
-                "\tStar Wars\t2.0\n" +
-                "Amount owed is 11.5\n" +
-                "You earned 5 frequent renter points";
+        String expectedStatement =
+                "<h1>Rental Record for <em>John Smith</em></h1>\n<table>\n" +
+                "<tr><td>Die Hard</td><td>2.0</td></tr>\n" +
+                "<tr><td>The Incident</td><td>6.0</td></tr>\n" +
+                "<tr><td>Kung Fu Panda</td><td>1.5</td></tr>\n" +
+                "<tr><td>Star Wars</td><td>2.0</td></tr>\n" +
+                "</table>\n<p>Amount owed is <b>11.5</b>.</p>\n" +
+                "<p>You earned <b>5</b> frequent renter points.</p>";
+
         MatcherAssert.assertThat(statementResult, is(expectedStatement));
     }
 

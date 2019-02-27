@@ -18,17 +18,7 @@ class Customer {
     }
 
     public String statement() {
-        Enumeration rentals = _rentals.elements();
-        StringBuilder result = new StringBuilder("Rental Record for " + getName() + "\n");
-        while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-            // show figures for this rental
-            result.append("\t").append(each.getMovie().getTitle()).append("\t").append(each.getCost()).append("\n");
-        }
-        // add footer lines
-        result.append("Amount owed is ").append(getTotalCharge()).append("\n");
-        result.append("You earned ").append(getTotalFrequentRenterPoints()).append(" frequent renter points");
-        return result.toString();
+        return getHtmlStatement();
     }
 
     double getTotalCharge() {
@@ -49,5 +39,24 @@ class Customer {
             points += each.addFrequentRentalPoints();
         }
         return points;
+    }
+
+    String getHtmlStatement() {
+        Enumeration rentals = _rentals.elements();
+        StringBuilder result =
+                new StringBuilder("<h1>Rental Record for <em>")
+                        .append(getName()).append("</em></h1>\n<table>\n");
+        while (rentals.hasMoreElements()) {
+            Rental each = (Rental) rentals.nextElement();
+            // show figures for this rental
+            result.append("<tr><td>").append(each.getMovie().getTitle())
+                  .append("</td><td>").append(each.getCost()).append("</td></tr>\n");
+        }
+        // add footer lines
+        result.append("</table>\n<p>Amount owed is <b>").append(getTotalCharge()).append("</b>.</p>\n");
+        result.append("<p>You earned <b>").append(getTotalFrequentRenterPoints())
+              .append("</b> frequent renter points.</p>");
+
+        return result.toString();
     }
 }
