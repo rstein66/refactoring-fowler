@@ -16,10 +16,10 @@ class Rental {
     }
 
     double getCost() {
-        return _movie.getCost(getDaysRented());
+        return getMovie().getCost(getDaysRented());
     }
 
     int getFrequentRentalPoints() {
-        return _movie.getFrequentRentalPoints(getDaysRented());
+        return getMovie().getFrequentRentalPoints(getDaysRented());
     }
 }

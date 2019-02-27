@@ -1,15 +1,16 @@
 import java.util.Enumeration;
 import java.util.Vector;
 
+
 class Customer {
     private String _name;
     private Vector<Rental> _rentals = new Vector<>();
 
-    public Customer(String name) {
+    Customer(String name) {
         _name = name;
     }
 
-    public void addRental(Rental arg) {
+    void addRental(Rental arg) {
         _rentals.addElement(arg);
     }
 
@@ -17,7 +18,7 @@ class Customer {
         return _name;
     }
 
-    public String statement() {
+    String statement() {
         return getHtmlStatement();
     }
 
@@ -41,11 +42,12 @@ class Customer {
         return points;
     }
 
-    String getHtmlStatement() {
+    private String getHtmlStatement() {
         Enumeration rentals = _rentals.elements();
         StringBuilder result =
                 new StringBuilder("<h1>Rental Record for <em>")
                         .append(getName()).append("</em></h1>\n<table>\n");
+
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
             // show figures for this rental
