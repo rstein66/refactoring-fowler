@@ -36,7 +36,7 @@ class Customer {
         Enumeration rentals = _rentals.elements();
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
-            points += each.addFrequentRentalPoints();
+            points += each.getFrequentRentalPoints();
         }
         return points;
     }
@@ -50,11 +50,14 @@ class Customer {
             Rental each = (Rental) rentals.nextElement();
             // show figures for this rental
             result.append("<tr><td>").append(each.getMovie().getTitle())
-                  .append("</td><td>").append(each.getCost()).append("</td></tr>\n");
+                  .append("</td><td>").append(each.getCost())
+                  .append("</td></tr>\n");
         }
         // add footer lines
-        result.append("</table>\n<p>Amount owed is <b>").append(getTotalCharge()).append("</b>.</p>\n");
-        result.append("<p>You earned <b>").append(getTotalFrequentRenterPoints())
+        result.append("</table>\n<p>Amount owed is <b>")
+              .append(getTotalCharge()).append("</b>.</p>\n");
+        result.append("<p>You earned <b>")
+              .append(getTotalFrequentRenterPoints())
               .append("</b> frequent renter points.</p>");
 
         return result.toString();
